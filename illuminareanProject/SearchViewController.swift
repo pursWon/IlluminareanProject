@@ -67,12 +67,12 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         guard let inform = userInform else { return UITableViewCell() }
         
         cell.userNameLabel.text = inform[indexPath.row].login
-        cell.userUrlLabel.text = inform[indexPath.row].url
+        cell.userUrlLabel.text = inform[indexPath.row].html_url
         
-        guard let url = URL(string: inform[indexPath.row].avatar_url) else { return UITableViewCell() }
+        guard let imageUrl = URL(string: inform[indexPath.row].avatar_url) else { return UITableViewCell() }
         
         DispatchQueue.global().async {
-            if let data = try? Data(contentsOf: url) {
+            if let data = try? Data(contentsOf: imageUrl) {
                 if let image = UIImage(data: data) {
                     DispatchQueue.main.async {
                         cell.userImageView.image = image
@@ -84,6 +84,13 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let inform = userInform else { return }
+        
+        guard let urls = URL(string: inform[indexPath.row].html_url) else { return }
+        UIApplication.shared.open(urls)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
@@ -92,7 +99,6 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
 extension SearchViewController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         isFiltering = true
-        
     }
     
     // func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
