@@ -49,6 +49,7 @@ class SearchViewController: UIViewController {
     
     @IBAction func searchButton(_ sender: UIButton) {
         guard let text = searchBar.text else { return }
+        
         setUserData(url: url + text)
     }
 }
@@ -68,7 +69,17 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         cell.userNameLabel.text = inform[indexPath.row].login
         cell.userUrlLabel.text = inform[indexPath.row].url
         
+        guard let url = URL(string: inform[indexPath.row].avatar_url) else { return UITableViewCell() }
         
+        DispatchQueue.global().async {
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        cell.userImageView.image = image
+                    }
+                }
+            }
+        }
         
         return cell
     }
