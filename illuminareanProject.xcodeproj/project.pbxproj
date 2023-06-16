@@ -13,10 +13,10 @@
 		D0ADAD2C2A3A973800834F72 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0ADAD2A2A3A973800834F72 /* Main.storyboard */; };
 		D0ADAD2E2A3A973A00834F72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0ADAD2D2A3A973A00834F72 /* Assets.xcassets */; };
 		D0ADAD312A3A973A00834F72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0ADAD2F2A3A973A00834F72 /* LaunchScreen.storyboard */; };
-		D0ADAD392A3AB6B000834F72 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ADAD382A3AB6B000834F72 /* Model.swift */; };
+		D0ADAD392A3AB6B000834F72 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ADAD382A3AB6B000834F72 /* Users.swift */; };
 		D0ADAD3C2A3AEC5800834F72 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ADAD3B2A3AEC5800834F72 /* SearchCell.swift */; };
 		D0ADAD432A3C26AC00834F72 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = D0ADAD422A3C26AC00834F72 /* Moya */; };
-		D0ADAD452A3C27E300834F72 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ADAD442A3C27E300834F72 /* Users.swift */; };
+		D0ADAD452A3C27E300834F72 /* GitHubApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ADAD442A3C27E300834F72 /* GitHubApi.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,9 +28,9 @@
 		D0ADAD2D2A3A973A00834F72 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0ADAD302A3A973A00834F72 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D0ADAD322A3A973A00834F72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D0ADAD382A3AB6B000834F72 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		D0ADAD382A3AB6B000834F72 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		D0ADAD3B2A3AEC5800834F72 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
-		D0ADAD442A3C27E300834F72 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
+		D0ADAD442A3C27E300834F72 /* GitHubApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubApi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +80,8 @@
 		D0ADAD3A2A3AB6BF00834F72 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D0ADAD382A3AB6B000834F72 /* Model.swift */,
-				D0ADAD442A3C27E300834F72 /* Users.swift */,
+				D0ADAD382A3AB6B000834F72 /* Users.swift */,
+				D0ADAD442A3C27E300834F72 /* GitHubApi.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -167,8 +167,8 @@
 				D0ADAD3C2A3AEC5800834F72 /* SearchCell.swift in Sources */,
 				D0ADAD252A3A973800834F72 /* AppDelegate.swift in Sources */,
 				D0ADAD272A3A973800834F72 /* SceneDelegate.swift in Sources */,
-				D0ADAD452A3C27E300834F72 /* Users.swift in Sources */,
-				D0ADAD392A3AB6B000834F72 /* Model.swift in Sources */,
+				D0ADAD452A3C27E300834F72 /* GitHubApi.swift in Sources */,
+				D0ADAD392A3AB6B000834F72 /* Users.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
