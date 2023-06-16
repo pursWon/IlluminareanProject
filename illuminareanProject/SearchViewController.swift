@@ -39,31 +39,11 @@ class SearchViewController: UIViewController {
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).rightView = nil
     }
     
-    // func setUserData(url: String) {
-    //     let headers: HTTPHeaders = ["Accept": "application/vnd.github+json", "Authorization": "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"]
-    //
-    //     AF.request(url, method: .get, headers: headers).responseDecodable(of: Users.self) { response in
-    //         if let data = response.value {
-    //             self.userInform = data.items
-    //
-    //             if !self.userInform.isEmpty {
-    //                 self.emptyLabel.isHidden = true
-    //             } else {
-    //                 self.emptyLabel.isHidden = false
-    //             }
-    //         } else {
-    //             self.emptyLabel.isHidden = false
-    //         }
-    //
-    //         self.tableView.reloadData()
-    //     }
-    // }
     
     func setProvideData(query: String) {
         provider.request(.searchUser(query: query)) { result in
             switch result {
             case .success(let response):
-                print("search: \(response)")
                 let data = try! JSONDecoder().decode(Users.self, from: response.data)
                 self.userInform = data.items
                 
@@ -74,6 +54,7 @@ class SearchViewController: UIViewController {
                 }
                 
                 self.tableView.reloadData()
+                
             case .failure(let error):
                 print("error : \(error)")
             }
