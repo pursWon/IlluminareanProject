@@ -15,7 +15,8 @@
 		D0ADAD312A3A973A00834F72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0ADAD2F2A3A973A00834F72 /* LaunchScreen.storyboard */; };
 		D0ADAD392A3AB6B000834F72 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ADAD382A3AB6B000834F72 /* Model.swift */; };
 		D0ADAD3C2A3AEC5800834F72 /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ADAD3B2A3AEC5800834F72 /* SearchCell.swift */; };
-		D0ADAD3F2A3AEF5800834F72 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D0ADAD3E2A3AEF5800834F72 /* Alamofire */; };
+		D0ADAD432A3C26AC00834F72 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = D0ADAD422A3C26AC00834F72 /* Moya */; };
+		D0ADAD452A3C27E300834F72 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ADAD442A3C27E300834F72 /* Users.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		D0ADAD322A3A973A00834F72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0ADAD382A3AB6B000834F72 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		D0ADAD3B2A3AEC5800834F72 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		D0ADAD442A3C27E300834F72 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,7 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0ADAD3F2A3AEF5800834F72 /* Alamofire in Frameworks */,
+				D0ADAD432A3C26AC00834F72 /* Moya in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				D0ADAD382A3AB6B000834F72 /* Model.swift */,
+				D0ADAD442A3C27E300834F72 /* Users.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -100,7 +103,7 @@
 			);
 			name = illuminareanProject;
 			packageProductDependencies = (
-				D0ADAD3E2A3AEF5800834F72 /* Alamofire */,
+				D0ADAD422A3C26AC00834F72 /* Moya */,
 			);
 			productName = illuminareanProject;
 			productReference = D0ADAD212A3A973800834F72 /* illuminareanProject.app */;
@@ -131,7 +134,7 @@
 			);
 			mainGroup = D0ADAD182A3A973800834F72;
 			packageReferences = (
-				D0ADAD3D2A3AEF5800834F72 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				D0ADAD412A3C26AC00834F72 /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			productRefGroup = D0ADAD222A3A973800834F72 /* Products */;
 			projectDirPath = "";
@@ -164,6 +167,7 @@
 				D0ADAD3C2A3AEC5800834F72 /* SearchCell.swift in Sources */,
 				D0ADAD252A3A973800834F72 /* AppDelegate.swift in Sources */,
 				D0ADAD272A3A973800834F72 /* SceneDelegate.swift in Sources */,
+				D0ADAD452A3C27E300834F72 /* Users.swift in Sources */,
 				D0ADAD392A3AB6B000834F72 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,21 +388,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		D0ADAD3D2A3AEF5800834F72 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		D0ADAD412A3C26AC00834F72 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			repositoryURL = "https://github.com/Moya/Moya";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D0ADAD3E2A3AEF5800834F72 /* Alamofire */ = {
+		D0ADAD422A3C26AC00834F72 /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D0ADAD3D2A3AEF5800834F72 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
+			package = D0ADAD412A3C26AC00834F72 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
