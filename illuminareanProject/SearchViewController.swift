@@ -35,10 +35,10 @@ class SearchViewController: UIViewController {
     func setSearchBar() {
         searchBar.delegate = self
         searchBar.isSearchResultsButtonSelected = true
+        let searchBarStyle = searchBar.value(forKey: "searchField") as? UITextField
+        searchBarStyle?.clearButtonMode = .never
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).leftView = nil
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).rightView = nil
     }
-    
     
     func setProvideData(query: String) {
         provider.request(.searchUser(query: query)) { result in
