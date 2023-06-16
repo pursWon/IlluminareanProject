@@ -80,13 +80,22 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RB2-n3-Tmf">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RB2-n3-Tmf" userLabel="SearchButton">
                                 <rect key="frame" x="343" y="50.666666666666657" width="50" height="35"/>
                                 <color key="tintColor" systemColor="systemOrangeColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="magnifyingglass" catalog="system"/>
                                 <connections>
                                     <action selector="searchButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ij2-2m-Tbv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Mv-XJ-gYW" userLabel="CancelButton">
+                                <rect key="frame" x="275" y="50.666666666666657" width="58" height="35"/>
+                                <color key="tintColor" red="1" green="0.0" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="취소 "/>
+                                <connections>
+                                    <action selector="cancelButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hmf-dK-gT7"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -96,6 +105,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RB2-n3-Tmf" secondAttribute="trailing" id="1De-2H-NR9"/>
                             <constraint firstItem="1nu-PT-0eo" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Abq-OP-I4u"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="B8i-f8-Kl2" secondAttribute="trailing" id="Gfy-t5-dfb"/>
+                            <constraint firstItem="0Mv-XJ-gYW" firstAttribute="centerY" secondItem="o0u-1R-POr" secondAttribute="centerY" id="MdB-2P-P5I"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1nu-PT-0eo" secondAttribute="trailing" constant="10" id="O7z-tg-Gjy"/>
                             <constraint firstItem="B8i-f8-Kl2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Pdn-2J-CcW"/>
                             <constraint firstItem="B8i-f8-Kl2" firstAttribute="top" secondItem="o0u-1R-POr" secondAttribute="bottom" constant="10" id="RZn-8q-9bx"/>
@@ -106,9 +116,11 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="B8i-f8-Kl2" secondAttribute="bottom" id="n9T-OS-AVp"/>
                             <constraint firstItem="RB2-n3-Tmf" firstAttribute="centerY" secondItem="o0u-1R-POr" secondAttribute="centerY" id="pWJ-l6-JGN"/>
                             <constraint firstItem="o0u-1R-POr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rSl-z9-kvG"/>
+                            <constraint firstItem="RB2-n3-Tmf" firstAttribute="leading" secondItem="0Mv-XJ-gYW" secondAttribute="trailing" constant="10" id="xwe-YB-ewG"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="0Mv-XJ-gYW" id="nCC-so-3k1"/>
                         <outlet property="emptyLabel" destination="1nu-PT-0eo" id="PNd-9K-uXz"/>
                         <outlet property="searchBar" destination="o0u-1R-POr" id="mTK-KH-l3k"/>
                         <outlet property="tableView" destination="B8i-f8-Kl2" id="zht-Al-Hsp"/>
