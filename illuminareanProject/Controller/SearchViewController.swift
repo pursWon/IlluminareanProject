@@ -1,5 +1,6 @@
 import UIKit
 import Moya
+import Kingfisher
 
 class SearchViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
@@ -7,12 +8,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var emptyLabel: UILabel!
     @IBOutlet weak var cancelButton: UIButton!
     
-    let url: String = "https://api.github.com/search/users?q="
-    let provider = MoyaProvider<GitHubApi>()
-    
-    var userInform: [Inform] = []
-    var imageData: [UIImage]?
-    var isFiltering: Bool = false
+    let viewModel = SearchViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,31 +36,10 @@ class SearchViewController: UIViewController {
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).leftView = nil
     }
     
-    func setProvideData(query: String) {
-        provider.request(.searchUser(query: query)) { result in
-            switch result {
-            case .success(let response):
-                let data = try! JSONDecoder().decode(Users.self, from: response.data)
-                self.userInform = data.items
-                
-                if !self.userInform.isEmpty {
-                    self.emptyLabel.isHidden = true
-                } else {
-                    self.emptyLabel.isHidden = false
-                }
-                
-                self.tableView.reloadData()
-                
-            case .failure(let error):
-                print("error : \(error)")
-            }
-        }
-    }
-    
     @IBAction func searchButton(_ sender: UIButton) {
         guard let text = searchBar.text else { return }
         
-        setProvideData(query: text)
+        viewModel.setProvideData(query: text, emptyLabel: emptyLabel, tableView: tableView)
     }
     
     @IBAction func cancelButton(_ sender: UIButton) {
@@ -75,33 +50,25 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userInform.count
+        return viewModel.userInform.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = self.tableView.dequeueReusableCell(withIdentifier: "searchCell", for: indexPath) as? SearchCell else { return UITableViewCell() }
         
         cell.userNameLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        cell.userNameLabel.text = userInform[indexPath.row].login
-        cell.userUrlLabel.text = userInform[indexPath.row].html_url
+        cell.userNameLabel.text = viewModel.userInform[indexPath.row].login
+        cell.userUrlLabel.text = viewModel.userInform[indexPath.row].html_url
         
-        guard let imageUrl = URL(string: userInform[indexPath.row].avatar_url) else { return UITableViewCell() }
-        
-        DispatchQueue.global().async {
-            if let data = try? Data(contentsOf: imageUrl) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        cell.userImageView.image = image
-                    }
-                }
-            }
+        if viewModel.imageURL.count == viewModel.userInform.count {
+            cell.userImageView.kf.setImage(with: viewModel.imageURL[indexPath.row])
         }
-        
+     
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let urls = URL(string: userInform[indexPath.row].html_url) else { return }
+        guard let urls = URL(string: viewModel.userInform[indexPath.row].html_url) else { return }
         
         UIApplication.shared.open(urls)
     }
@@ -120,9 +87,5 @@ extension SearchViewController: UISearchBarDelegate {
         } else {
             cancelButton.isHidden = true
         }
-    }
-    
-    func dismissKeyboard() {
-        searchBar.resignFirstResponder()
     }
 }
