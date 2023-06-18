@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  illuminareanProject
-//
-//  Created by MacBook Air on 2023/06/15.
-//
-
 import UIKit
 
 @main
