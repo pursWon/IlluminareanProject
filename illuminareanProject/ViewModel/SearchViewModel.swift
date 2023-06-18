@@ -30,7 +30,6 @@ class SearchViewModel {
                 }
                 
                 tableView.reloadData()
-                
             case .failure(let error):
                 print("error : \(error)")
             }
