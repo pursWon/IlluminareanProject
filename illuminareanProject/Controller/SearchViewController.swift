@@ -29,7 +29,7 @@ class SearchViewController: UIViewController {
         $0.font = .boldSystemFont(ofSize: 21)
     }
     
-    var tableView: UITableView = UITableView().then {
+    let tableView: UITableView = UITableView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -67,6 +67,7 @@ class SearchViewController: UIViewController {
     func setSearchBar() {
         searchBar.delegate = self
         searchBar.isSearchResultsButtonSelected = true
+        
         let searchBarStyle = searchBar.value(forKey: "searchField") as? UITextField
         searchBarStyle?.clearButtonMode = .never
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).leftView = nil
@@ -134,7 +135,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 130
+        return 120
     }
 }
 

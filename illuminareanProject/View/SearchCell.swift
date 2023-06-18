@@ -3,19 +3,19 @@ import UIKit
 class CustomCell: UITableViewCell {
     static let identifier = "CustomCell"
     
-    var nameLabel: UILabel = UILabel().then {
+    let nameLabel: UILabel = UILabel().then {
         $0.text = "name"
         $0.font = .boldSystemFont(ofSize: 20)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    var urlLabel: UILabel = UILabel().then {
+    let urlLabel: UILabel = UILabel().then {
         $0.text = "url"
         $0.font = .boldSystemFont(ofSize: 13)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    var userImageView: UIImageView = UIImageView().then {
+    let userImageView: UIImageView = UIImageView().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.backgroundColor = .red
     }
@@ -44,8 +44,8 @@ class CustomCell: UITableViewCell {
         nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -50).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 150).isActive = true
         nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -100).isActive = true
-        urlLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 80).isActive = true
-        urlLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20).isActive = true
+        urlLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5).isActive = true
+        urlLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30).isActive = true
         urlLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 150).isActive = true
         urlLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
         userImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
