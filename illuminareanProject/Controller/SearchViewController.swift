@@ -1,6 +1,7 @@
 import UIKit
 import Moya
 import Kingfisher
+import Then
 
 class SearchViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
