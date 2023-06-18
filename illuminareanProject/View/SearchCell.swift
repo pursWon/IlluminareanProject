@@ -5,12 +5,13 @@ class CustomCell: UITableViewCell {
     
     var nameLabel: UILabel = UILabel().then {
         $0.text = "name"
-        $0.font = UIFont.boldSystemFont(ofSize: 20)
+        $0.font = .boldSystemFont(ofSize: 20)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
     var urlLabel: UILabel = UILabel().then {
         $0.text = "url"
+        $0.font = .boldSystemFont(ofSize: 13)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -46,7 +47,7 @@ class CustomCell: UITableViewCell {
         urlLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 80).isActive = true
         urlLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20).isActive = true
         urlLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 150).isActive = true
-        urlLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -100).isActive = true
+        urlLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
         userImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
         userImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10).isActive = true
         userImageView.trailingAnchor.constraint(equalTo: urlLabel.leadingAnchor, constant: -30).isActive = true
