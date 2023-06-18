@@ -117,7 +117,6 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomCell.identifier, for: indexPath) as? CustomCell else { return UITableViewCell() }
         
-        cell.nameLabel.font = .boldSystemFont(ofSize: 20)
         cell.nameLabel.text = viewModel.userInform[indexPath.row].login
         cell.urlLabel.text = viewModel.userInform[indexPath.row].html_url
         
