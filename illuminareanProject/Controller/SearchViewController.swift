@@ -20,6 +20,7 @@ class SearchViewController: UIViewController {
     func setTableView() {
         searchView.tableView.delegate = self
         searchView.tableView.dataSource = self
+        searchView.tableView.prefetchDataSource = self
     }
     
     func setSearchBar() {
@@ -31,11 +32,28 @@ class SearchViewController: UIViewController {
         searchView.cancelButton.addTarget(self, action: #selector(cancelButtonClicked), for: .touchUpInside)
     }
     
-    @objc func searchButtonClicked() {
+    func fetchData() {
         guard let text = searchView.searchBar.text else { return }
-        print(text)
         
-        viewModel.setProvideData(query: text, emptyLabel: searchView.emptyLabel, tableView: searchView.tableView)
+        if viewModel.totalCount > viewModel.userInform.count {
+            viewModel.setProvideData(query: (text, viewModel.pageNum), emptyLabel: searchView.emptyLabel, tableView: searchView.tableView)
+        }
+    }
+    
+    func getTotalPage() -> Int {
+        if viewModel.totalCount % 30 == 0 {
+            return viewModel.totalCount / 30
+        } else {
+            return viewModel.totalCount / 30 + 1
+        }
+    }
+    
+    @objc func searchButtonClicked() {
+        viewModel.imageURL = []
+        viewModel.userInform = []
+        viewModel.pageNum = 1
+        
+        fetchData()
     }
     
     @objc func cancelButtonClicked() {
@@ -53,7 +71,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomCell.identifier, for: indexPath) as? CustomCell else { return UITableViewCell() }
         
         cell.nameLabel.text = viewModel.userInform[indexPath.row].login
-        cell.urlLabel.text = viewModel.userInform[indexPath.row].html_url
+        cell.urlLabel.text = viewModel.userInform[indexPath.row].htmlUrl
         
         if viewModel.imageURL.count == viewModel.userInform.count {
             cell.userImageView.kf.setImage(with: viewModel.imageURL[indexPath.row])
@@ -63,7 +81,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let urls = URL(string: viewModel.userInform[indexPath.row].html_url) else { return }
+        guard let urls = URL(string: viewModel.userInform[indexPath.row].htmlUrl) else { return }
         
         UIApplication.shared.open(urls)
     }
@@ -73,14 +91,33 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+extension SearchViewController: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        if viewModel.pageNum < getTotalPage() {
+            viewModel.pageNum += 1
+            fetchData()
+        }
+    }
+}
+
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let text = searchBar.text else { return }
         
-        if !text.isEmpty {
-            searchView.cancelButton.isHidden = false
-        } else {
+        if text.isEmpty {
             searchView.cancelButton.isHidden = true
+        } else {
+            searchView.cancelButton.isHidden = false
         }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = searchView.searchBar.text else { return }
+        
+        viewModel.imageURL = []
+        viewModel.userInform = []
+        viewModel.pageNum = 1
+        viewModel.setProvideData(query: (text, viewModel.pageNum), emptyLabel: searchView.emptyLabel, tableView: searchView.tableView)
+        searchBar.resignFirstResponder()
     }
 }
