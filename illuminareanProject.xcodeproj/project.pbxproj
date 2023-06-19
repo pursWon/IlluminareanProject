@@ -19,6 +19,7 @@
 		D0ADAD4B2A3C4B2900834F72 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ADAD4A2A3C4B2900834F72 /* SearchViewModel.swift */; };
 		D0B857062A3D5AE2008E77B3 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D0B857052A3D5AE2008E77B3 /* Kingfisher */; };
 		D0B857092A3D72BD008E77B3 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = D0B857082A3D72BD008E77B3 /* Then */; };
+		D0B8572E2A400796008E77B3 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B8572D2A400796008E77B3 /* SearchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		D0ADAD3B2A3AEC5800834F72 /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		D0ADAD442A3C27E300834F72 /* GitHubApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubApi.swift; sourceTree = "<group>"; };
 		D0ADAD4A2A3C4B2900834F72 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		D0B8572D2A400796008E77B3 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				D0ADAD3B2A3AEC5800834F72 /* SearchCell.swift */,
+				D0B8572D2A400796008E77B3 /* SearchView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 				D0ADAD3C2A3AEC5800834F72 /* SearchCell.swift in Sources */,
 				D0ADAD252A3A973800834F72 /* AppDelegate.swift in Sources */,
 				D0ADAD4B2A3C4B2900834F72 /* SearchViewModel.swift in Sources */,
+				D0B8572E2A400796008E77B3 /* SearchView.swift in Sources */,
 				D0ADAD272A3A973800834F72 /* SceneDelegate.swift in Sources */,
 				D0ADAD452A3C27E300834F72 /* GitHubApi.swift in Sources */,
 				D0ADAD392A3AB6B000834F72 /* Users.swift in Sources */,

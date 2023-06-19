@@ -16,7 +16,7 @@ class SearchViewModel {
                 let data = try! JSONDecoder().decode(Users.self, from: response.data)
                 self.imageURL = []
                 self.userInform = data.items
-               
+                
                 if !self.userInform.isEmpty {
                     emptyLabel.isHidden = true
                 } else {
