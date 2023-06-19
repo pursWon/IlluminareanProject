@@ -33,6 +33,9 @@ class SearchViewController: UIViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
+    var isPaging: Bool = false
+    var hasNextPage: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,6 +45,25 @@ class SearchViewController: UIViewController {
         setSearchBar()
         setButtonAction()
         setHiddenButton()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        
+    }
+    
+    func paging() {
+        guard let text = searchBar.text else { return }
+        
+        let index = viewModel.userInform.count
+        var datas: [Inform] = []
+        
+        viewModel.setProvideData(query: text, emptyLabel: emptyLabel, tableView: tableView)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            
+        }
     }
     
     func setView() {
@@ -118,14 +140,14 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomCell.identifier, for: indexPath) as? CustomCell else { return UITableViewCell() }
         
-        cell.nameLabel.text = viewModel.userInform[indexPath.row].login
-        cell.urlLabel.text = viewModel.userInform[indexPath.row].html_url
-        
-        if viewModel.imageURL.count == viewModel.userInform.count {
-            cell.userImageView.kf.setImage(with: viewModel.imageURL[indexPath.row])
-        }
-        
-        return cell
+            cell.nameLabel.text = viewModel.userInform[indexPath.row].login
+            cell.urlLabel.text = viewModel.userInform[indexPath.row].html_url
+            
+            if viewModel.imageURL.count == viewModel.userInform.count {
+                cell.userImageView.kf.setImage(with: viewModel.imageURL[indexPath.row])
+            }
+            
+            return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -151,3 +173,17 @@ extension SearchViewController: UISearchBarDelegate {
     }
 }
 
+extension SearchViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard let text = searchBar.text else { return }
+
+        let contentOffset_y = scrollView.contentOffset.y
+        let tableViewContentSize = tableView.contentSize.height
+        let pagination_y = tableViewContentSize * 0.2
+
+        if contentOffset_y > tableViewContentSize - pagination_y {
+            viewModel.setProvideData(query: text, emptyLabel: emptyLabel, tableView: tableView)
+            print(4)
+        }
+    }
+}

@@ -20,6 +20,14 @@ class CustomCell: UITableViewCell {
         $0.backgroundColor = .red
     }
     
+    // let activityIndicatorView: UIActivityIndicatorView = UIActivityIndicatorView().then {
+    //     $0.translatesAutoresizingMaskIntoConstraints = false
+    // }
+    //
+    // func start() {
+    //     activityIndicatorView.startAnimating()
+    // }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
