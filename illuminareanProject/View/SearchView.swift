@@ -74,17 +74,17 @@ class SearchView: UIView {
     
     func setContraints() {
         tableView.topAnchor.constraint(equalTo: topAnchor, constant: 150).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
-        searchBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        searchBar.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         searchBar.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50).isActive = true
         searchBar.topAnchor.constraint(equalTo: topAnchor, constant: 60).isActive = true
-        searchBar.bottomAnchor.constraint(equalTo: tableView.topAnchor, constant: 0).isActive = true
+        searchBar.bottomAnchor.constraint(equalTo: tableView.topAnchor).isActive = true
         searchBar.centerYAnchor.constraint(equalTo: searchButton.centerYAnchor).isActive = true
         searchButton.leadingAnchor.constraint(equalTo: searchBar.trailingAnchor, constant: 10).isActive = true
         searchButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
-        searchButton.topAnchor.constraint(equalTo: searchBar.topAnchor, constant: 0).isActive = true
+        searchButton.topAnchor.constraint(equalTo: searchBar.topAnchor).isActive = true
         searchButton.centerYAnchor.constraint(equalTo: searchBar.centerYAnchor).isActive = true
         cancelButton.trailingAnchor.constraint(equalTo: searchButton.leadingAnchor, constant: -30).isActive = true
         cancelButton.centerYAnchor.constraint(equalTo: searchBar.centerYAnchor).isActive = true
