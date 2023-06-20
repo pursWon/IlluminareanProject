@@ -1,6 +1,8 @@
 import UIKit
+import Then
 
-class SearchView: UIView {
+class SearchView: UIView, UIProtocol {
+    // MARK: UI
     let searchBar: UISearchBar = UISearchBar().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -30,30 +32,32 @@ class SearchView: UIView {
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
+    // MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setView()
+        configure()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
-        setView()
+        fatalError("init(coder:) has not been implemented")
     }
     
-    func setView() {
-        let views: [UIView] = [tableView, searchBar, searchButton, cancelButton, emptyLabel]
+    // MARK: Configure
+    func configure() {
         self.backgroundColor = .white
-        
-        views.forEach {
-            self.addSubview($0)
-        }
-        
+        setViews()
         setTableView()
         setSearchBar()
         setHiddenButton()
         setContraints()
+    }
+    
+    func setViews() {
+        let views: [UIView] = [tableView, searchBar, searchButton, cancelButton, emptyLabel]
+        views.forEach { self.addSubview($0) }
     }
     
     func setTableView() {
@@ -77,19 +81,24 @@ class SearchView: UIView {
         tableView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        
         searchBar.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         searchBar.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50).isActive = true
         searchBar.topAnchor.constraint(equalTo: topAnchor, constant: 60).isActive = true
         searchBar.bottomAnchor.constraint(equalTo: tableView.topAnchor).isActive = true
         searchBar.centerYAnchor.constraint(equalTo: searchButton.centerYAnchor).isActive = true
+        
         searchButton.leadingAnchor.constraint(equalTo: searchBar.trailingAnchor, constant: 10).isActive = true
         searchButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
         searchButton.topAnchor.constraint(equalTo: searchBar.topAnchor).isActive = true
         searchButton.centerYAnchor.constraint(equalTo: searchBar.centerYAnchor).isActive = true
+        
         cancelButton.trailingAnchor.constraint(equalTo: searchButton.leadingAnchor, constant: -30).isActive = true
         cancelButton.centerYAnchor.constraint(equalTo: searchBar.centerYAnchor).isActive = true
         cancelButton.topAnchor.constraint(equalTo: searchBar.topAnchor, constant: 10).isActive = true
+        
         emptyLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         emptyLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
 }
+
