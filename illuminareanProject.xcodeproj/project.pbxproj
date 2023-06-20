@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D00BC7A12A41EBF0000D79E1 /* UIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00BC7A02A41EBF0000D79E1 /* UIProtocol.swift */; };
 		D0ADAD252A3A973800834F72 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ADAD242A3A973800834F72 /* AppDelegate.swift */; };
 		D0ADAD272A3A973800834F72 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ADAD262A3A973800834F72 /* SceneDelegate.swift */; };
 		D0ADAD292A3A973800834F72 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ADAD282A3A973800834F72 /* SearchViewController.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D00BC7A02A41EBF0000D79E1 /* UIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIProtocol.swift; sourceTree = "<group>"; };
 		D0ADAD212A3A973800834F72 /* illuminareanProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = illuminareanProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0ADAD242A3A973800834F72 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0ADAD262A3A973800834F72 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +53,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D00BC79F2A41EBE0000D79E1 /* ETC */ = {
+			isa = PBXGroup;
+			children = (
+				D00BC7A02A41EBF0000D79E1 /* UIProtocol.swift */,
+			);
+			path = ETC;
+			sourceTree = "<group>";
+		};
 		D0ADAD182A3A973800834F72 = {
 			isa = PBXGroup;
 			children = (
@@ -70,6 +80,7 @@
 		D0ADAD232A3A973800834F72 /* illuminareanProject */ = {
 			isa = PBXGroup;
 			children = (
+				D00BC79F2A41EBE0000D79E1 /* ETC */,
 				D0ADAD492A3C46FF00834F72 /* AppDelegate */,
 				D0ADAD3A2A3AB6BF00834F72 /* Model */,
 				D0ADAD462A3C424E00834F72 /* View */,
@@ -93,8 +104,8 @@
 		D0ADAD462A3C424E00834F72 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D0ADAD3B2A3AEC5800834F72 /* SearchCell.swift */,
 				D0B8572D2A400796008E77B3 /* SearchView.swift */,
+				D0ADAD3B2A3AEC5800834F72 /* SearchCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -207,6 +218,7 @@
 			files = (
 				D0ADAD292A3A973800834F72 /* SearchViewController.swift in Sources */,
 				D0ADAD3C2A3AEC5800834F72 /* SearchCell.swift in Sources */,
+				D00BC7A12A41EBF0000D79E1 /* UIProtocol.swift in Sources */,
 				D0ADAD252A3A973800834F72 /* AppDelegate.swift in Sources */,
 				D0ADAD4B2A3C4B2900834F72 /* SearchViewModel.swift in Sources */,
 				D0B8572E2A400796008E77B3 /* SearchView.swift in Sources */,
