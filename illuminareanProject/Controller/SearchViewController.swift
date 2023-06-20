@@ -35,9 +35,7 @@ class SearchViewController: UIViewController {
     func fetchData() {
         guard let text = searchView.searchBar.text else { return }
         
-        if viewModel.totalCount > viewModel.userInform.count {
-            viewModel.setProvideData(query: (text, viewModel.pageNum), emptyLabel: searchView.emptyLabel, tableView: searchView.tableView)
-        }
+        viewModel.setProvideData(query: (text, viewModel.pageNum), emptyLabel: searchView.emptyLabel, tableView: searchView.tableView)
     }
     
     func getTotalPage() -> Int {
