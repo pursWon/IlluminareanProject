@@ -1,8 +1,9 @@
 import Foundation
 import Moya
 
+// GitHub API 공식문서, 라이브러리 Moya의 공식문서 및 관련 블로그를 참고
 enum GitHubApi {
-    case searchUser(query: (String, Int))
+    case searchUser(param: (query: String, page: Int))
 }
 
 extension GitHubApi: TargetType {
