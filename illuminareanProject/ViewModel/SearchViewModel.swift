@@ -1,7 +1,12 @@
 import UIKit
 import Moya
 
-class SearchViewModel {
+/// Github Search API 통신을 위해 준수해야할 프로토콜 (사용한 함수들을 명세)
+protocol SearchAPIProtocol {
+    func getUserData(param: (query: String, page: Int), emptyLabel: UILabel, tableView: UITableView)
+}
+
+class SearchViewModel: SearchAPIProtocol {
     let provider = MoyaProvider<GitHubApi>()
     
     var userInform: [Inform] = []
@@ -10,31 +15,34 @@ class SearchViewModel {
     var pageNum: Int = 1
     var totalCount: Int = 0
     
-    func setProvideData(query: (String, Int), emptyLabel: UILabel, tableView: UITableView) {
-        provider.request(.searchUser(query: query)) { result in
+    func getUserData(param: (query: String, page: Int), emptyLabel: UILabel, tableView: UITableView) {
+        provider.request(.searchUser(param: param)) { result in
             switch result {
             case .success(let response):
-                let data = try! JSONDecoder().decode(Users.self, from: response.data)
-                self.userInform += data.items
-                self.totalCount = data.totalCount
-                
-                self.userInform.forEach {
-                    if let url = URL(string: $0.avatarUrl) {
-                        self.imageURL.append(url)
+                do {
+                    let data = try JSONDecoder().decode(Users.self, from: response.data)
+                    self.userInform += data.items
+                    self.totalCount = data.totalCount
+                    
+                    data.items.forEach {
+                        if self.imageURL.count < self.totalCount {
+                            if let url = URL(string: $0.avatarUrl) {
+                                self.imageURL.append(url)
+                            }
+                        }
                     }
                 }
-                
-                if self.userInform.isEmpty {
-                    emptyLabel.isHidden = false
-                } else {
-                    emptyLabel.isHidden = true
+                catch {
+                    print("fail to decode - \(error.localizedDescription)")
                 }
-                
+
+                emptyLabel.isHidden = self.userInform.isEmpty ? false : true
                 tableView.reloadData()
-            
+                
             case .failure(let error):
-                print("error : \(error.localizedDescription)")
+                print("fail to urlsession - \(error.localizedDescription)")
             }
         }
     }
 }
+
