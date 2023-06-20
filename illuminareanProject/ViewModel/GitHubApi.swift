@@ -23,19 +23,11 @@ extension GitHubApi: TargetType {
         return .get
     }
     
-    var sampleData: Data {
-        return Data()
-    }
-    
     var task: Task {
         switch self {
         case .searchUser(let query):
             return .requestParameters(parameters: ["q" : query.0, "page" : query.1], encoding: URLEncoding.default)
         }
-    }
-    
-    var validationType: Moya.ValidationType {
-        return .successAndRedirectCodes
     }
     
     var headers: [String : String]? {
