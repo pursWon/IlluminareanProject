@@ -115,6 +115,7 @@ extension SearchViewController: UITableViewDataSourcePrefetching {
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         guard let text = searchBar.text else { return }
+        
         searchView.cancelButton.isHidden = text.isEmpty ? true : false
     }
     
