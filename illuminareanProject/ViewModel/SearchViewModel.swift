@@ -21,8 +21,9 @@ class SearchViewModel: SearchAPIProtocol {
             case .success(let response):
                 do {
                     let data = try JSONDecoder().decode(Users.self, from: response.data)
-                    self.userInform += data.items
-                    self.totalCount = data.totalCount
+                    
+                    self.userInform += data.items // page가 갱신될 때마다 userInform 배열에 컨텐츠들을 추가
+                    self.totalCount = data.totalCount // totalCount는 계속해서 호출이 되지만 data 전체의 개수는 변하지 않으므로 고정된 값
                     
                     data.items.forEach {
                         if self.imageURL.count < self.totalCount {
@@ -32,13 +33,14 @@ class SearchViewModel: SearchAPIProtocol {
                         }
                     }
                 }
+                
                 catch {
                     print("fail to decode - \(error.localizedDescription)")
                 }
 
                 emptyLabel.isHidden = self.userInform.isEmpty ? false : true
-                tableView.reloadData()
                 
+                tableView.reloadData()
             case .failure(let error):
                 print("fail to urlsession - \(error.localizedDescription)")
             }

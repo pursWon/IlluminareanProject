@@ -7,6 +7,7 @@ class SearchViewController: UIViewController {
     // MARK: Properties
     let viewModel = SearchViewModel()
     let searchView = SearchView()
+    /// 한 페이지당 가지고 있는 검색 결과의 수
     let perPage: Int = 30
     
     // MARK: View Life Cycle
@@ -41,14 +42,16 @@ class SearchViewController: UIViewController {
     // MARK: ETC
     func fetchData() {
         guard let text = searchView.searchBar.text else { return }
+        
         viewModel.getUserData(param: (text, viewModel.pageNum), emptyLabel: searchView.emptyLabel, tableView: searchView.tableView)
+        // pageNum은 2
     }
     
-    func getTotalPage() -> Int {
-        if viewModel.totalCount % perPage == 0 {
-            return viewModel.totalCount / perPage
+    func getTotalPage() -> Int { // 전체 페이지 개수를 알아내는 함수
+        if viewModel.totalCount % perPage == 0 { // 모든 Data 개수에서 perPage(30)을 나눴을 때 0일 경우,
+            return viewModel.totalCount / perPage // 나눈 값을 return
         } else {
-            return viewModel.totalCount / perPage + 1
+            return viewModel.totalCount / perPage + 1 // 나눈 값에 1을 더해서 return
         }
     }
     
@@ -79,6 +82,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomCell.identifier, for: indexPath) as? CustomCell else { return UITableViewCell() }
+        
         cell.nameLabel.text = viewModel.userInform[indexPath.row].login
         cell.urlLabel.text = viewModel.userInform[indexPath.row].htmlUrl
         
@@ -91,6 +95,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let urls = URL(string: viewModel.userInform[indexPath.row].htmlUrl) else { return }
+        
         UIApplication.shared.open(urls)
     }
     
@@ -102,9 +107,9 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
 // MARK: UITableViewDataSourcePrefetching
 extension SearchViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        if viewModel.pageNum < getTotalPage() {
-            if viewModel.userInform.count == viewModel.pageNum * perPage {
-                viewModel.pageNum += 1
+        if viewModel.pageNum < getTotalPage() { // ex) 1 < 3
+            if viewModel.userInform.count == viewModel.pageNum * perPage { // ex) 30 = 1 * 30
+                viewModel.pageNum += 1 // 1 + 1 = 2
                 fetchData()
             }
         }
